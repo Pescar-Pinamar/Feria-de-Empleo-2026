@@ -1,4 +1,9 @@
+/* ==========================================================================
+   Fundación Pescar — Feria de Empleo 2026
+   Base + Header + Hero + todas las secciones + Footer
+   ========================================================================== */
 
+/* ---- Reset base ---- */
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; font-size: 110%; }
 body, h1, h2, h3, p, figure, blockquote, ul, ol { margin: 0; }
@@ -18,6 +23,7 @@ address { font-style: normal; }
   }
 }
 
+/* ---- Tokens ---- */
 :root {
   --navy: #141B4D;
   --navy-700: #0E1338;
@@ -42,7 +48,7 @@ address { font-style: normal; }
   :root { --header-h: 75px; }
 }
 
-
+/* ---- Base typography ---- */
 body {
   font-family: var(--font-body);
   color: var(--ink);
@@ -60,7 +66,7 @@ h1, h2, h3 {
   letter-spacing: 0.01em;
 }
 
-
+/* ---- Layout helpers ---- */
 .container {
   max-width: 1200px;
   margin-inline: auto;
@@ -82,7 +88,7 @@ h1, h2, h3 {
 
 section[id] { scroll-margin-top: var(--header-h); }
 
-
+/* ---- Shared: eyebrow ---- */
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -103,7 +109,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   flex-shrink: 0;
 }
 
-
+/* ---- Shared: buttons ---- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -144,7 +150,9 @@ section[id] { scroll-margin-top: var(--header-h); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
 .hero-actions.center { justify-content: center; }
 
-
+/* ==========================================================================
+   Header
+   ========================================================================== */
 .site-header {
   position: fixed;
   inset-block-start: 0;
@@ -156,7 +164,7 @@ section[id] { scroll-margin-top: var(--header-h); }
               background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-
+/* Al scrollear (o con el menú mobile abierto) aparece la barra */
 .site-header.is-scrolled,
 .site-header.menu-open {
   background: var(--frosted-bg);
@@ -166,7 +174,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   box-shadow: 0 8px 24px rgba(20, 27, 77, 0.08);
 }
 
-
+/* Se oculta al bajar, reaparece al subir (clase controlada por script.js) */
 .site-header.is-hidden { transform: translateY(-100%); }
 
 .nav-inner {
@@ -183,7 +191,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   .brand img { height: 72px; }
 }
 
-
+/* ---- Navegación desktop ---- */
 .main-nav {
   display: flex;
   align-items: center;
@@ -233,7 +241,7 @@ section[id] { scroll-margin-top: var(--header-h); }
 }
 .nav-cta:hover { background: var(--orange); transform: translateY(-2px); }
 
-
+/* ---- Toggle mobile (hamburguesa) ---- */
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -261,7 +269,7 @@ section[id] { scroll-margin-top: var(--header-h); }
 
 .brand { position: relative; z-index: 220; }
 
-
+/* ---- Responsive: nav se convierte en panel anclado arriba (no pantalla completa) ---- */
 @media (max-width: 900px) {
   .menu-toggle { display: flex; position: relative; z-index: 220; }
 
@@ -315,7 +323,9 @@ section[id] { scroll-margin-top: var(--header-h); }
   .nav-cta:hover { background: var(--orange-600); }
 }
 
-
+/* ==========================================================================
+   Hero — foto limpia (sin filtro), texto blanco con sombra suave
+   ========================================================================== */
 .hero {
   position: relative;
   min-height: 100svh;
@@ -358,7 +368,7 @@ section[id] { scroll-margin-top: var(--header-h); }
 
 .hero-actions { margin-top: 1.75rem; justify-content: center; text-shadow: none; }
 
-
+/* ---- Entrada al cargar: mismo scale-up-top que el resto de la página ---- */
 .hero-content h1,
 .hero-content .hero-sub,
 .hero-content .hero-actions {
@@ -371,7 +381,9 @@ section[id] { scroll-margin-top: var(--header-h); }
 .hero-content .hero-sub { animation-delay: 0.2s; }
 .hero-content .hero-actions { animation-delay: 0.3s; }
 
-
+/* ==========================================================================
+   Propuesta
+   ========================================================================== */
 .propuesta {
   background: #FCF9F5;
   padding-block: clamp(4rem, 8vw, 6rem);
@@ -428,11 +440,12 @@ section[id] { scroll-margin-top: var(--header-h); }
   color: var(--muted);
 }
 
-
-.card-blue  { background: rgba(124, 120, 196, 0.8); }
-.card-lilac { background: rgba(248, 155, 155, 0.8); }
-.card-mint  { background: rgba(119, 175, 196, 0.8); }
-.card-peach { background: rgba(67, 113, 203, 0.8); }
+/* Colores de las tarjetas (los de Canva, al 80 % de opacidad) con texto blanco.
+   Los nombres de clase quedan del diseño anterior. */
+.card-blue  { background: rgba(124, 120, 196, 0.8); } /* #7C78C4 — Descubrí en qué sos bueno */
+.card-lilac { background: rgba(248, 155, 155, 0.8); } /* #F89B9B — Armá un perfil destacado */
+.card-mint  { background: rgba(119, 175, 196, 0.8); } /* #77AFC4 — Perdele el miedo a la entrevista */
+.card-peach { background: rgba(67, 113, 203, 0.8); }  /* #4371CB — Conectate */
 
 .propuesta-card h3,
 .propuesta-card p { color: var(--white); }
@@ -441,7 +454,9 @@ section[id] { scroll-margin-top: var(--header-h); }
   .propuesta-grid { grid-template-columns: 1fr; }
 }
 
-
+/* ==========================================================================
+   Stands
+   ========================================================================== */
 #contenidos {
   background: var(--paper);
   padding-block: clamp(3rem, 5vw, 4rem);
@@ -465,11 +480,14 @@ section[id] { scroll-margin-top: var(--header-h); }
   gap: 0.9rem;
   margin-top: clamp(1.5rem, 3vw, 2rem);
 }
-
+/* Fila 1: 2 tarjetas anchas. Fila 2: 3 tarjetas. */
 .stand-card:nth-child(-n+2) { grid-column: span 3; }
 .stand-card:nth-child(n+3)  { grid-column: span 2; }
 
-
+/* ---- Tarjeta que da vuelta ----
+   .stand-card  = escena 3D (perspectiva)
+   .stand-flip  = pieza que gira
+   .stand-face  = cara frontal / cara de atrás (ocupan el mismo lugar) */
 .stand-card {
   display: grid;
   perspective: 1400px;
@@ -482,7 +500,7 @@ section[id] { scroll-margin-top: var(--header-h); }
 }
 .stand-card.is-flipped .stand-flip {
   transform: rotateY(180deg);
-  transition-delay: 0.1s; 
+  transition-delay: 0.1s; /* la que se abre arranca un instante después de que se cierra la anterior */
 }
 
 .stand-face {
@@ -546,7 +564,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   color: var(--orange);
 }
 
-
+/* Dorso: título a la izquierda, ícono a la derecha, texto y "Cerrar" */
 .stand-back-head {
   display: flex;
   align-items: flex-start;
@@ -569,10 +587,10 @@ section[id] { scroll-margin-top: var(--header-h); }
   line-height: 1.55;
   color: var(--navy);
 }
-
+/* Las 3 flechitas del dorso se muestran solo en celulares (ver bloque @media más abajo) */
 .stand-back-content .stand-list { display: none; }
 
-
+/* Botones "Ver +" y "Cerrar" */
 .stand-btn {
   margin-top: auto;
   display: inline-flex;
@@ -599,7 +617,9 @@ section[id] { scroll-margin-top: var(--header-h); }
   .stand-card:nth-child(n) { grid-column: span 1; }
   .stand-card:nth-child(5) { grid-column: span 2; }
 }
-
+/* ---- Celulares: las tarjetas pasan a ser un acordeón ----
+   Cada stand es una fila (ícono + título + flecha). Al tocarla se despliega
+   el texto debajo; solo una fila abierta a la vez (lo controla script.js). */
 @media (max-width: 640px) {
   .stands-grid { grid-template-columns: 1fr; gap: 0.6rem; }
   .stand-card:nth-child(n) { grid-column: auto; }
@@ -630,6 +650,7 @@ section[id] { scroll-margin-top: var(--header-h); }
     box-shadow: none !important;
   }
 
+  /* Fila (frente) */
   .stand-front {
     position: relative;
     display: flex;
@@ -655,7 +676,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   }
   .stand-front .stand-list { display: none; }
 
-
+  /* Flecha */
   .stand-front::after {
     content: '';
     flex-shrink: 0;
@@ -669,7 +690,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   }
   .stand-card.is-flipped .stand-front::after { transform: translateY(2px) rotate(-135deg); }
 
-
+  /* Toda la fila es el botón */
   .stand-open {
     position: absolute;
     inset: 0;
@@ -685,7 +706,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   .stand-open:hover { background: transparent; transform: none; }
   .stand-open:focus-visible { outline-offset: -5px; }
 
-
+  /* Texto desplegable (dorso) */
   .stand-back { visibility: hidden; transition: visibility 0s linear 0.35s; }
   .stand-card.is-flipped .stand-back { visibility: visible; transition: visibility 0s; }
   .stand-back-head, .stand-close { display: none; }
@@ -713,13 +734,15 @@ section[id] { scroll-margin-top: var(--header-h); }
   }
 }
 
-
+/* Si la persona pidió menos movimiento, la vuelta es instantánea */
 @media (prefers-reduced-motion: reduce) {
   .stand-flip { transition-duration: 0.01s; transition-delay: 0s !important; }
   .stand-back-content, .stand-front::after { transition-duration: 0.01s; }
 }
 
-
+/* ==========================================================================
+   Footer
+   ========================================================================== */
 .footer-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -802,7 +825,9 @@ section[id] { scroll-margin-top: var(--header-h); }
   .footer-col-side:last-child { padding-top: 2rem; padding-bottom: 2.5rem; }
 }
 
-
+/* ==========================================================================
+   Helpers compartidos por las secciones restantes
+   ========================================================================== */
 .light { color: var(--ink); }
 .dark  { color: var(--white); }
 
@@ -825,13 +850,15 @@ h2.center { text-align: center; }
   line-height: 1.6;
 }
 
-
+/* Elemento que se eleva suavemente al pasar el mouse */
 .hoverable {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .hoverable:hover { transform: translateY(-4px); }
 
-
+/* ==========================================================================
+   Formación
+   ========================================================================== */
 .formacion {
   background: var(--white);
   padding-block: clamp(3.5rem, 7vw, 5.5rem);
@@ -874,7 +901,9 @@ h2.center { text-align: center; }
   }
 }
 
-
+/* ==========================================================================
+   Comunicación / Video
+   ========================================================================== */
 .comunicacion {
   background: var(--paper);
   padding-block: clamp(4rem, 8vw, 6rem);
@@ -908,7 +937,9 @@ h2.center { text-align: center; }
   border: 0;
 }
 
-
+/* ==========================================================================
+   Empresas
+   ========================================================================== */
 .empresas {
   background: var(--white);
   padding-block: clamp(3.5rem, 7vw, 5.5rem);
@@ -928,13 +959,13 @@ h2.center { text-align: center; }
   font-size: 1rem;
 }
 
-
+/* Carrusel de logos */
 .marquee {
   overflow: hidden;
   margin-top: clamp(1.5rem, 3vw, 2.25rem);
   padding-block: 1rem 1.75rem;
   cursor: grab;
-  touch-action: pan-y;
+  touch-action: pan-y;      /* el scroll vertical de la página sigue funcionando en mobile */
   user-select: none;
   -webkit-user-select: none;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
@@ -951,7 +982,7 @@ h2.center { text-align: center; }
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  margin-right: 1.25rem;
+  margin-right: 1.25rem; /* margin (y no gap) para que las dos mitades del loop midan igual */
   padding: 0.85rem 1.75rem 0.85rem 1rem;
   background: #FBFAF7;
   border: 1px solid rgba(20, 27, 77, 0.06);
@@ -976,10 +1007,13 @@ h2.center { text-align: center; }
 
 .marquee.is-dragging { cursor: grabbing; }
 
-
+/* El movimiento (automático y al arrastrar) lo controla script.js sobre la
+   propiedad "translate", para no chocar con el "transform" del efecto .reveal. */
 .marquee-track { will-change: translate; }
 
-
+/* ==========================================================================
+   Ubicación
+   ========================================================================== */
 .ubicacion {
   background: var(--paper);
   padding-block: clamp(4rem, 8vw, 6rem);
@@ -1056,7 +1090,9 @@ h2.center { text-align: center; }
   .venue-block { grid-template-columns: 1fr; }
 }
 
-
+/* ==========================================================================
+   Banner final (Participá)
+   ========================================================================== */
 .cta-banner {
   position: relative;
   overflow: hidden;
@@ -1067,7 +1103,7 @@ h2.center { text-align: center; }
   padding-block: clamp(5rem, 12vw, 9rem);
   text-align: center;
 }
-
+/* Solo PC/tablet: alto proporcional al ancho para que la foto se vea casi completa (frentes arriba, cuellos abajo) */
 @media (min-width: 901px) {
   .cta-banner {
     background-position: center 25%;
@@ -1084,6 +1120,39 @@ h2.center { text-align: center; }
   background: rgba(14, 19, 56, 0.45);
 }
 
+/* Celulares: mismo look que en compu. La foto se ve casi completa (alto
+   proporcional al ancho), con el texto encima y los dos botones lado a lado */
+@media (max-width: 640px) {
+  .cta-banner {
+    background-position: center;
+    min-height: 66vw;
+    display: grid;
+    align-content: center;
+    padding-block: 1.25rem;
+  }
+  .cta-banner .container { padding-inline: 0.85rem; }
+  .cta-banner .eyebrow { font-size: 0.9rem; }
+  .cta-banner h2 {
+    font-size: clamp(1.55rem, 7.4vw, 2rem);
+    margin-top: 0.35rem;
+    max-width: none;
+  }
+  .cta-banner .hero-actions {
+    margin-top: 1rem;
+    flex-wrap: nowrap;
+    gap: 0.6rem;
+  }
+  .cta-banner .hero-actions .btn {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.6rem 0.5rem;
+    font-size: 0.72rem;
+    line-height: 1.25;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
 .cta-banner .container { position: relative; z-index: 1; }
 
 .cta-banner h2 {
@@ -1094,13 +1163,13 @@ h2.center { text-align: center; }
 
 .cta-banner .hero-actions { margin-top: 2.25rem; }
 
-
+/* Píldoras transparentes (mismo estilo que "Descargar PDF"): solo el trazo lleva color */
 .btn-ghost-orange,
 .btn-ghost-teal {
   --ghost: var(--orange);
   color: var(--white);
   background: transparent;
-  border: 2px solid var(--ghost); 
+  border: 2px solid var(--ghost); /* grosor del trazo: 1px = igual que "Descargar PDF" */
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55);
 }
 .btn-ghost-orange { --ghost: var(--orange); }
@@ -1111,7 +1180,9 @@ h2.center { text-align: center; }
   border-color: var(--ghost);
 }
 
-
+/* ==========================================================================
+   Efecto de aparición (aparece al entrar en pantalla)
+   ========================================================================== */
 .reveal > * {
   opacity: 0;
   transform: scale(0.5);
@@ -1129,7 +1200,7 @@ h2.center { text-align: center; }
   100% { transform: scale(1); transform-origin: center top; opacity: 1; }
 }
 
-
+/* Stagger: cada elemento hijo se corre un poco para que no aparezcan todos juntos */
 .reveal.is-visible > *:nth-child(2) { animation-delay: 0.1s; }
 .reveal.is-visible > *:nth-child(3) { animation-delay: 0.2s; }
 .reveal.is-visible > *:nth-child(4) { animation-delay: 0.3s; }
