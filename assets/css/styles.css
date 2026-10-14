@@ -1155,8 +1155,6 @@ h2.center { text-align: center; }
     text-align: center;
     border-width: 1.5px;
   }
-  /* En celulares el botón dice solo el nombre ("Fundación Pescar", "Pinamar S.A.") */
-  .cta-banner .btn-pre { display: none; }
 }
 
 .cta-banner .container { position: relative; z-index: 1; }
