@@ -632,7 +632,7 @@ section[id] { scroll-margin-top: var(--header-h); }
     box-shadow: none !important;
   }
 
-
+  
   .stand-front {
     position: relative;
     display: flex;
@@ -658,7 +658,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   }
   .stand-front .stand-list { display: none; }
 
-
+  
   .stand-front::after {
     content: '';
     flex-shrink: 0;
@@ -1085,22 +1085,19 @@ h2.center { text-align: center; }
 .inscripcion-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: 0;
 }
+
 
 .inscripcion-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 1.3rem 1.5rem 1.4rem;
-  background: var(--white);
-  border: 2px solid var(--navy);
-  border-radius: 24px;
-  transition: box-shadow 0.25s ease;
+  padding: 0.5rem 1.5rem 0.6rem;
 }
-.inscripcion-card:hover {
-  box-shadow: 0 16px 40px rgba(20, 27, 77, 0.10);
+.inscripcion-card + .inscripcion-card {
+  border-left: 1.5px solid var(--navy);
 }
 
 .inscripcion-card h3 {
@@ -1123,8 +1120,16 @@ h2.center { text-align: center; }
   color: var(--white);
 }
 
+
 @media (max-width: 900px) {
   .inscripcion-grid { grid-template-columns: 1fr; }
+  .inscripcion-card { padding: 1.4rem 0; }
+  .inscripcion-card:first-child { padding-top: 0.5rem; }
+  .inscripcion-card:last-child { padding-bottom: 0.5rem; }
+  .inscripcion-card + .inscripcion-card {
+    border-left: 0;
+    border-top: 1.5px solid var(--navy);
+  }
 }
 
 
@@ -1132,23 +1137,18 @@ h2.center { text-align: center; }
   .inscripcion { padding-block: 2.5rem; }
   .inscripcion .sec-head { margin-bottom: 1.25rem; }
   .inscripcion .sec-lead { font-size: 0.95rem; }
-  .inscripcion-grid { gap: 1.25rem; }
-  .inscripcion-card {
-    padding: 0;
-    background: transparent;
-    border: 0;
-    border-radius: 0;
-  }
-  .inscripcion-card:hover { box-shadow: none; }
+  .inscripcion-card { padding: 1.15rem 0; }
+  .inscripcion-card:first-child { padding-top: 0.25rem; }
+  .inscripcion-card:last-child { padding-bottom: 0.25rem; }
   .inscripcion-card h3 {
     font-size: 1.15rem;
     margin-bottom: 0.55rem;
   }
   .inscripcion-card .btn {
-    width: 100%;
-    min-width: 0;
-    padding-block: 0.8rem;
-    font-size: 0.92rem;
+    width: auto;
+    min-width: 11.5rem;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.86rem;
   }
 }
 
@@ -1163,6 +1163,7 @@ h2.center { text-align: center; }
   padding-block: clamp(5rem, 12vw, 9rem);
   text-align: center;
 }
+
 
 @media (min-width: 901px) {
   .cta-banner {
@@ -1225,6 +1226,7 @@ h2.center { text-align: center; }
 
 .cta-banner .hero-actions { margin-top: 2.25rem; }
 
+
 .btn-ghost-orange,
 .btn-ghost-teal {
   --ghost: var(--orange);
@@ -1258,6 +1260,7 @@ h2.center { text-align: center; }
   0% { transform: scale(0.5); transform-origin: center top; opacity: 0; }
   100% { transform: scale(1); transform-origin: center top; opacity: 1; }
 }
+
 
 .reveal.is-visible > *:nth-child(2) { animation-delay: 0.1s; }
 .reveal.is-visible > *:nth-child(3) { animation-delay: 0.2s; }
