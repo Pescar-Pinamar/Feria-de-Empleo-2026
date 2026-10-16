@@ -632,7 +632,7 @@ section[id] { scroll-margin-top: var(--header-h); }
     box-shadow: none !important;
   }
 
-  
+
   .stand-front {
     position: relative;
     display: flex;
@@ -658,7 +658,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   }
   .stand-front .stand-list { display: none; }
 
-  
+
   .stand-front::after {
     content: '';
     flex-shrink: 0;
@@ -914,7 +914,7 @@ h2.center { text-align: center; }
 
 .empresas {
   background: var(--white);
-  padding-block: clamp(3.5rem, 7vw, 5.5rem);
+  padding-block: clamp(2.25rem, 4.5vw, 3.5rem);
   overflow: hidden;
 }
 
@@ -933,9 +933,9 @@ h2.center { text-align: center; }
 
 
 .marquee {
-  overflow: hidden;
+  margin-top: clamp(0.75rem, 2vw, 1.25rem);
   margin-top: clamp(1.5rem, 3vw, 2.25rem);
-  padding-block: 1rem 1.75rem;
+  padding-block: 0.25rem 0;
   cursor: grab;
   touch-action: pan-y;
   user-select: none;
@@ -953,28 +953,23 @@ h2.center { text-align: center; }
 .logo-chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-right: 1.25rem;
-  padding: 0.85rem 1.75rem 0.85rem 1rem;
-  background: #FBFAF7;
-  border: 1px solid rgba(20, 27, 77, 0.06);
-  border-radius: 999px;
-  box-shadow:
-    0 10px 22px rgba(20, 27, 77, 0.09),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 1.05rem;
-  text-transform: uppercase;
-  color: var(--navy);
-  white-space: nowrap;
+  justify-content: center;
+  margin-right: clamp(1.75rem, 3vw, 2.5rem);
+  min-height: 5.25rem;
 }
 
-.chip-mark {
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--orange), #FFB27A);
-  flex-shrink: 0;
+
+.logo-chip img {
+  display: block;
+  width: calc(var(--w, 120) * 1px * var(--k, 1));
+  height: auto;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+@media (max-width: 640px) {
+  .marquee { --k: 0.92; }
+  .logo-chip { min-height: 4.8rem; margin-right: 1.9rem; }
 }
 
 .marquee.is-dragging { cursor: grabbing; }
@@ -1164,7 +1159,6 @@ h2.center { text-align: center; }
   text-align: center;
 }
 
-
 @media (min-width: 901px) {
   .cta-banner {
     background-position: center 25%;
@@ -1260,7 +1254,6 @@ h2.center { text-align: center; }
   0% { transform: scale(0.5); transform-origin: center top; opacity: 0; }
   100% { transform: scale(1); transform-origin: center top; opacity: 1; }
 }
-
 
 .reveal.is-visible > *:nth-child(2) { animation-delay: 0.1s; }
 .reveal.is-visible > *:nth-child(3) { animation-delay: 0.2s; }

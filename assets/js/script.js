@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.innerWidth > 900) closeMenu();
   });
 
-
+  // Cerrar con Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeMenu();
   });
@@ -84,19 +84,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  const marquee = document.querySelector('.marquee');
-  const track = document.getElementById('marqueeTrack');
-
-  if (marquee && track) {
+  // Cada carrusel es independiente; data-direction="right" lo hace ir en sentido contrario
+  document.querySelectorAll('.marquee').forEach((marquee) => {
+    const track = marquee.querySelector('.marquee-track');
+    if (!track) return;
+    const DIR = marquee.dataset.direction === 'right' ? 1 : -1;
+    {
     const AUTO_SPEED = 40;      
     const MAX_VELOCITY = 2500;  
     const reduceMotion = false; 
 
   
+    const originalCount = track.children.length;
     while (track.scrollWidth < marquee.offsetWidth && track.children.length) {
       Array.from(track.children).forEach((el) => track.appendChild(el.cloneNode(true)));
     }
     Array.from(track.children).forEach((el) => track.appendChild(el.cloneNode(true)));
+    // las copias son solo para el loop: los lectores de pantalla las ignoran
+    track.querySelectorAll('.logo-chip').forEach((el, i) => { if (i >= originalCount) el.setAttribute('aria-hidden', 'true'); });
     track.classList.add('is-ready');
 
 
@@ -130,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
           x += velocity * dt;
           velocity *= Math.pow(0.04, dt);   
         } else if (!hovering && !reduceMotion) {
-          x -= AUTO_SPEED * dt;
+          x += DIR * AUTO_SPEED * dt;
         }
       }
 
@@ -179,8 +184,10 @@ document.addEventListener('DOMContentLoaded', () => {
     marquee.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovering = true; });
     marquee.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') hovering = false; });
   }
+  });
 
   const standCards = document.querySelectorAll('.stand-card');
+  // En celulares las tarjetas son un acordeón: la fila (frente) sigue activa para poder cerrar
   const standsMobile = window.matchMedia('(max-width: 640px)');
 
   function setStandState(card, open, moveFocus) {
@@ -208,9 +215,11 @@ document.addEventListener('DOMContentLoaded', () => {
   standCards.forEach((card) => {
     card.querySelector('.stand-open').addEventListener('click', () => {
       if (standsMobile.matches) {
+        // Acordeón: tocar la fila abierta la cierra
         if (card.classList.contains('is-flipped')) { setStandState(card, false, false); return; }
         closeAllStands(card);
         setStandState(card, true, false);
+        // Si al cerrarse la anterior la fila quedó fuera de pantalla, la traemos a la vista
         setTimeout(() => card.scrollIntoView({ block: 'nearest', behavior: 'smooth' }), 380);
         return;
       }
